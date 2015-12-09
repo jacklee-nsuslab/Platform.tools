@@ -1,0 +1,24 @@
+db:
+  image: mysql:latest
+  ports:
+   - "3306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: 'develop'
+    MYSQL_DATABASE: 'develop_cmb'
+    MYSQL_USER: 'app_web'
+    MYSQL_PASSWORD: 'dnpq'
+
+mq:
+  image: rabbitmq:3.5.6-management
+  ports:
+   - "5672:5672"
+   - "15672:15672"
+  environment:
+    RABBITMQ_DEFAULT_USER: 'app_web'
+    RABBITMQ_DEFAULT_PASS: 'dnpq'
+    RABBITMQ_DEFAULT_VHOST: 'celery'
+
+redis:
+  image: redis:2.8.22
+  ports:
+   - "6379:6379"
