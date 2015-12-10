@@ -1,0 +1,15 @@
+chamber:
+  build: .
+  command: chamber
+  extra_hosts:
+    - "chamberware:192.168.99.100"
+  environment:
+    DJANGO_SETTINGS_MODULE: 'farm.conf.settings.development'    
+
+swiss:
+  build: .
+  command: swiss
+  extra_hosts:
+    - "chamberware:192.168.99.100"
+  environment:
+    DJANGO_SETTINGS_MODULE: 'teller.settings.development'

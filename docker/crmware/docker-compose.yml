@@ -1,40 +1,32 @@
 db:
-  build: ../db_chamber
-  ports:
-   - "3306:3306"
-  environment:
-    MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+  extends:
+    file: ../chamberware/docker-compose.yml
+    service: db
+    
 mq:
-  image: rabbitmq:3.5.6-management
-  ports:
-   - "5672:5672"
-   - "15672:15672"
-  environment:
-    RABBITMQ_DEFAULT_USER: 'app_crm'
-    RABBITMQ_DEFAULT_PASS: 'Tldkfmdpan'
-    RABBITMQ_DEFAULT_VHOST: 'celery'
+  extends:
+    file: ../chamberware/docker-compose.yml
+    service: mq
 
 redis:
-  image: redis:2.8.22
-  ports:
-   - "6379:6379"
+  extends:
+    file: ../chamberware/docker-compose.yml
+    service: redis
 
 chamber:
-  build: ../farm_chamber
-  command: chamber
+  extends:
+    file: ../farm_chamber/docker-compose.yml
+    service: chamber
   links:
     - db
     - mq
     - redis
-  extra_hosts:
-    - "chamberware:192.168.99.100"
 
 swiss:
-  build: ../farm_chamber
-  command: swiss
+  extends:
+    file: ../farm_chamber/docker-compose.yml
+    service: swiss
   links:
     - db
     - mq
     - redis
-  extra_hosts:
-    - "chamberware:192.168.99.100"    
