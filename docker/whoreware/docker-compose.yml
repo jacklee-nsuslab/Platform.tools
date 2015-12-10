@@ -1,0 +1,16 @@
+db:
+  build: ../db_whore
+  ports:
+   - "3306:3306"
+  environment:
+    MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+    
+mq:
+  extends:
+    file: ../chamberware/docker-compose.yml
+    service: mq
+
+redis:
+  extends:
+    file: ../chamberware/docker-compose.yml
+    service: redis

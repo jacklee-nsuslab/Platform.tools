@@ -1,0 +1,7 @@
+CREATE DATABASE db_swiss;
+CREATE DATABASE db_chamber;
+CREATE DATABASE db_crm;
+CREATE DATABASE db_ams;
+
+
+    
